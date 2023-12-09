@@ -19,7 +19,7 @@ const Login = () => {
 
   const email = useRef(null);
   const password = useRef(null);
-  const name = useRef("name");
+  const name = useRef("");
 
   const HandleClick = () => {
     if (isSignIn) {
