@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { LOGIN_BG } from "../utils/constants";
+import { checkValidateSignin } from "../utils/validate";
 
 const Login = () => {
   const bgStyle = {
@@ -10,8 +11,33 @@ const Login = () => {
   };
 
   const [isSignIn, setisSignIn] = useState(true);
+  const [errorMsg, setErrorMsg] = useState(null);
+
   const HandleSignUp = () => {
     setisSignIn(!isSignIn);
+  };
+
+  const email = useRef(null);
+  const password = useRef(null);
+  const name = useRef("name");
+
+  const HandleClick = () => {
+    if (isSignIn) {
+      const validationMsg = checkValidateSignin(
+        email.current.value,
+        password.current.value
+      );
+
+      setErrorMsg(validationMsg);
+    } else {
+      const validationMsg = checkValidateSignin(
+        email.current.value,
+        password.current.value,
+        name.current.value
+      );
+
+      setErrorMsg(validationMsg);
+    }
   };
 
   return (
@@ -24,38 +50,44 @@ const Login = () => {
       </div>
 
       <Header />
-      <form className="form w-4/12 bg-black absolute mx-auto my-[92px] left-0 right-0 text-white py-[48px] px-[68px] opacity-80 rounded-lg">
+      <form
+        className="form w-4/12 bg-black absolute mx-auto my-[92px] left-0 right-0 text-white py-[48px] px-[68px] opacity-80 rounded-lg"
+        onSubmit={(e) => e.preventDefault()}
+      >
         <h1 className="text-[32px] font-bold mb-[28px] ">
           {isSignIn ? "Sign In" : "Sign Up"}
         </h1>
 
         {!isSignIn && (
           <input
+            ref={name}
             className="p-2  text-[16px]  h-[56px] w-full bg-gray-800 text-white mb-4 rounded-md"
             type="text"
             placeholder="Enter your name"
             name="name"
-            id=""
           />
         )}
 
         <input
+          ref={email}
           className="p-2  text-[16px]  h-[56px] w-full bg-gray-800 text-white mb-4 rounded-md"
-          type="text"
+          type="email"
           placeholder="Enter your email"
           name="Email"
-          id=""
         />
 
         <input
+          ref={password}
           className="p-2  text-[16px]  h-[56px] w-full bg-gray-800 text-white mb-4 rounded-md"
-          type="text"
+          type="password"
           placeholder="Password"
           name="password"
-          id=""
         />
-
-        <button className=" bg-[#e50914] w-full h-10 text-[16px] font-semibold rounded-md py-[6px] mb-4 ">
+        <p className="text-netflix-color">{errorMsg} </p>
+        <button
+          className=" bg-netflix-color w-full h-10 text-[16px] font-semibold rounded-md py-[6px] mb-4 "
+          onClick={HandleClick}
+        >
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
 

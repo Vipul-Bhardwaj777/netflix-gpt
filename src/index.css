@@ -1,3 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Open Sans", sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center;
+  }
+}
