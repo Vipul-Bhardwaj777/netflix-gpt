@@ -2,19 +2,25 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { LOGIN_BG } from "../utils/constants";
 import { checkValidateSignin } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
+  const [isSignIn, setisSignIn] = useState(true);
+  const [errorMsg, setErrorMsg] = useState(null);
+
   const bgStyle = {
     backgroundImage: `url(${LOGIN_BG})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
 
-  const [isSignIn, setisSignIn] = useState(true);
-  const [errorMsg, setErrorMsg] = useState(null);
-
   const HandleSignUp = () => {
     setisSignIn(!isSignIn);
+    setErrorMsg(null);
   };
 
   const email = useRef(null);
@@ -37,6 +43,43 @@ const Login = () => {
       );
 
       setErrorMsg(validationMsg);
+    }
+
+    if (errorMsg) return;
+
+    if (!isSignIn) {
+      // Sign Up logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMsg(errorCode + "-" + errorMessage);
+          console.log(errorMessage);
+        });
+    } else {
+      // Sign In logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMsg(errorCode + "-" + errorMessage);
+        });
     }
   };
 
@@ -83,7 +126,7 @@ const Login = () => {
           placeholder="Password"
           name="password"
         />
-        <p className="text-netflix-color">{errorMsg} </p>
+        <p className="text-netflix-color mb-4">{errorMsg} </p>
         <button
           className=" bg-netflix-color w-full h-10 text-[16px] font-semibold rounded-md py-[6px] mb-4 "
           onClick={HandleClick}
