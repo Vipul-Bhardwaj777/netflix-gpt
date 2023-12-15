@@ -72,9 +72,6 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
-              console.log(user);
-
-              navigate("/browse");
             })
             .catch((error) => {
               navigate("/error");
@@ -96,7 +93,6 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
