@@ -31,10 +31,13 @@ const Main = () => {
   useEffect(() => {
     // We call onAuthStateChanged only once so useEffect is used
     onAuthStateChanged(auth, (user) => {
+      // If the user is signed in update the store
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
       } else {
+        // If the user is signed out clear the store
+
         dispatch(removeUser());
       }
     });

@@ -2,12 +2,10 @@ import React from "react";
 import { HEADER_LOGO } from "../utils/constants";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../utils/userSlice";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
 
@@ -15,7 +13,6 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        dispatch(removeUser());
         navigate("/");
       })
       .catch((error) => {

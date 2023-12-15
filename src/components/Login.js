@@ -67,7 +67,7 @@ const Login = () => {
             photoURL: "https://example.com/jane-q-user/profile.jpg",
           })
             .then(() => {
-              // User updated but our store is not so
+              // User updated in firebase but our store is not so
               const { uid, email, displayName } = auth.currentUser;
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
