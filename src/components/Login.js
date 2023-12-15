@@ -147,7 +147,7 @@ const Login = () => {
         />
         <p className="text-netflix-color mb-4">{errorMsg} </p>
         <button
-          className=" bg-netflix-color w-full h-10 text-[16px] font-semibold rounded-md py-[6px] mb-4 "
+          className=" bg-netflix-color hover:bg-red-700 w-full h-10 text-[16px] font-semibold rounded-md py-[6px] mb-4 "
           onClick={HandleClick}
         >
           {isSignIn ? "Sign In" : "Sign Up"}
