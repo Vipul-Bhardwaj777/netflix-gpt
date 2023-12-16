@@ -16,7 +16,7 @@ const Header = () => {
 
   useEffect(() => {
     // We call onAuthStateChanged only once so useEffect is used
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       // If the user is signed in update the store
       if (user) {
         const { uid, email, displayName } = user;
@@ -28,6 +28,8 @@ const Header = () => {
         navigate("/");
       }
     });
+
+    return () => unsubscribe();
   }, []);
 
   const HandleSignOut = () => {
@@ -42,6 +44,9 @@ const Header = () => {
 
   const handleEnter = () => {
     setShowSignout(true);
+  };
+  const handleLeave = () => {
+    setShowSignout(false);
   };
 
   return (
@@ -130,6 +135,7 @@ const Header = () => {
               <div
                 className="signout bg-black opacity-80 w-[218px]  absolute py-[10px] top-12 right-0 transition ease-in-out duration-[2s] flex flex-col   "
                 onMouseEnter={handleEnter}
+                onMouseLeave={handleLeave}
               >
                 <div className="user h-[43px] flex-center gap-[10px] ml-[10px] cursor-pointer">
                   <img
