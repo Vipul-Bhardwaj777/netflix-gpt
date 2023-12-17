@@ -81,7 +81,6 @@ const Login = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMsg(errorCode + "-" + errorMessage);
-          console.log(errorMessage);
         });
     } else {
       // Sign In logic
@@ -92,7 +91,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;

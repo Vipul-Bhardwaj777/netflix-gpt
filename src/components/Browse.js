@@ -1,13 +1,12 @@
 import React from "react";
 import Header from "./Header";
-import useMovieData from "../utils/useMovieData";
+import MainContainer from "./MainContainer";
 
 const Browse = () => {
-  useMovieData();
-
   return (
     <div className="browse-main">
       <Header />
+      <MainContainer />
     </div>
   );
 };

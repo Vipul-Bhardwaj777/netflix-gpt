@@ -7,6 +7,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { USER_ICON } from "../utils/constants";
+import { removeMovies } from "../utils/movieSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Header = () => {
       } else {
         // If the user is signed out clear the store
         dispatch(removeUser());
+        dispatch(removeMovies());
         navigate("/");
       }
     });
