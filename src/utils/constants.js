@@ -7,6 +7,14 @@ export const LOGIN_BG =
 export const MOVIE_API =
   "https://api.themoviedb.org/3/movie/now_playing?page=1";
 
+export const POPULAR_MOVIES_API = "https://api.themoviedb.org/3/movie/popular";
+
+export const TOP_RATED_MOVIES_API =
+  "https://api.themoviedb.org/3/movie/top_rated";
+
+export const UPCOMING_MOVIES_API =
+  "https://api.themoviedb.org/3/movie/upcoming";
+
 export const API_OPTIONS = {
   method: "GET",
   headers: {

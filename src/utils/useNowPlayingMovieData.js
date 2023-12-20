@@ -3,7 +3,7 @@ import { API_OPTIONS, MOVIE_API } from "./constants";
 import { useDispatch } from "react-redux";
 import { addNowPlayingMovies } from "./movieSlice";
 
-const useMovieData = () => {
+const useNowPlayingMovieData = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,4 +21,4 @@ const useMovieData = () => {
   };
 };
 
-export default useMovieData;
+export default useNowPlayingMovieData;

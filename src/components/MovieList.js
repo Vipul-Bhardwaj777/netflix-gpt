@@ -2,6 +2,8 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
+  if (!movies) return;
+
   return (
     <div className="main ">
       <div className="now-playing mb-[39px]">
@@ -9,7 +11,7 @@ const MovieList = ({ title, movies }) => {
           {title}
         </h1>
 
-        <div className="cards flex-center gap-2 overflow-x-scroll scrollbar-hidden">
+        <div className="cards flex-center gap-2 overflow-x-scroll scrollbar-hidden scroll-smooth">
           {movies.map((movie) => (
             <MovieCard poster_path={movie?.poster_path} />
           ))}
