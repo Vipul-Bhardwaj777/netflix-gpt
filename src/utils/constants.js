@@ -7,10 +7,13 @@ export const LOGIN_BG =
 export const MOVIE_API =
   "https://api.themoviedb.org/3/movie/now_playing?page=1";
 
-  export const API_OPTIONS = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYTg0MWNiZGY2MmZmNGQzNTg4MzlkOThiNzAxODc0ZSIsInN1YiI6IjY1N2Q4NDg5NWM1Y2M4MDZkODk2MGM0NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9eiEkCQ6gwVzqUIswLkfAi4GfT66yYVTU9xE-RCTkiU'
-    }
-  };
+export const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYTg0MWNiZGY2MmZmNGQzNTg4MzlkOThiNzAxODc0ZSIsInN1YiI6IjY1N2Q4NDg5NWM1Y2M4MDZkODk2MGM0NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9eiEkCQ6gwVzqUIswLkfAi4GfT66yYVTU9xE-RCTkiU",
+  },
+};
+
+export const CDN_IMG_URL = "https://image.tmdb.org/t/p/w500/";

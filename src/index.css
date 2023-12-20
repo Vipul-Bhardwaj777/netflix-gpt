@@ -22,3 +22,9 @@
     @apply text-white;
   }
 }
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+

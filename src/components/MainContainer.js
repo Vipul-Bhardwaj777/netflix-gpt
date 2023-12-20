@@ -13,10 +13,10 @@ const MainContainer = () => {
 
   if (!nowPlayingMovies) return;
 
-  const mainMovie = nowPlayingMovies[0];
+  const mainMovie = nowPlayingMovies[3];
   const { title, overview, id } = mainMovie;
   return (
-    <div>
+    <div className="main-container ">
       <VideoTitle title={title} overview={overview} />
       <VideoBg id={id} />
     </div>
