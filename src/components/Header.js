@@ -6,14 +6,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { addUser, removeUser } from "../utils/userSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { USER_ICON } from "../utils/constants";
+import { SUPPORTED_LANGS, USER_ICON } from "../utils/constants";
 import { removeMovies } from "../utils/movieSlice";
+import { toggleShowGpt } from "../utils/gptSlice";
+import { setLang } from "../utils/configSlice";
+import { lang } from "../utils/lang";
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const [showSignout, setShowSignout] = useState(false);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+  const langKey = useSelector((store) => store.config.lang);
 
   useEffect(() => {
     // We call onAuthStateChanged only once so useEffect is used
@@ -51,6 +56,14 @@ const Header = () => {
     setShowSignout(false);
   };
 
+  const handleToggleGpt = () => {
+    dispatch(toggleShowGpt());
+  };
+
+  const handleLang = (e) => {
+    dispatch(setLang(e.target.value));
+  };
+
   return (
     <div className="header-main z-40 flex-center justify-between h-[68px] w-full absolute bg-gradient-to-b from-black">
       {!user && (
@@ -62,37 +75,34 @@ const Header = () => {
       {user && (
         <div className="head-left flex-center justify-between">
           <div className="img  pl-8 ">
-            <img
-              className="h-[25px] w-[92px] "
-              src="./netflixLogo.svg"
-              alt="logo"
-            />
+            <Link to={"/"}>
+              <img
+                className="h-[25px] w-[92px] "
+                src="./netflixLogo.svg"
+                alt="logo"
+              />
+            </Link>
           </div>
 
           <ul className="head-list flex-center gap-[18px] text-white texyt-[14px] ml-[43px] font-medium ">
             <li>
               <Link className="" to={"/"}>
-                Home
+                {lang[langKey].tvShow}
               </Link>
             </li>
             <li>
               <Link className="" to={"/"}>
-                TV Shows
+                {lang[langKey].movies}
               </Link>
             </li>
             <li>
               <Link className="" to={"/"}>
-                Movies
+                {lang[langKey].news}
               </Link>
             </li>
             <li>
               <Link className="" to={"/"}>
-                New & Popular
-              </Link>
-            </li>
-            <li>
-              <Link className="" to={"/"}>
-                My List
+                {lang[langKey].myList}
               </Link>
             </li>
           </ul>
@@ -101,11 +111,32 @@ const Header = () => {
 
       {user && (
         <div className="head-right flex-center gap-[18px]">
-          <i className="fa-solid fa-magnifying-glass text-white text-[18px] pb-1 font-extralight cursor-pointer"></i>
+         
+            <div className="lang ">
+              <select
+                className="bg-gray-800 text-white text-[14px]  w-[74px] h-[27px] rounded-md text-center cursor-pointer outline-none"
+                onChange={handleLang}
+              >
+                {SUPPORTED_LANGS.map((lang) => (
+                  <option key={lang.identifier} value={lang.identifier}>
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          
 
-          <div className="children">
+          <div
+            className="Gpt-seatch flex-center gap-[8px] cursor-pointer"
+            onClick={handleToggleGpt}
+          >
+            {!showGptSearch && (
+              <i className="fa-solid fa-magnifying-glass text-white text-[18px] pb-1 font-extralight cursor-pointer"></i>
+            )}
             <p className="text-white text-[14px] cursor-pointer font-medium">
-              Children
+              {showGptSearch
+                ? `${lang[langKey].home}`
+                : `${lang[langKey].gptSearch}`}
             </p>
           </div>
 
@@ -148,19 +179,25 @@ const Header = () => {
                 <ul className="text-white cursor-pointer ">
                   <li className="text-[13px] flex-center gap-[10px] ml-[10px] h-[43px]">
                     <i className="fa-solid fa-pen text-[19px] w-6  text-center"></i>
-                    <p className="hover:underline">Manage Profiles </p>
+                    <p className="hover:underline">
+                      {lang[langKey].manageProfiles}{" "}
+                    </p>
                   </li>
                   <li className="text-[13px] flex-center gap-[10px] ml-[10px] h-[43px]">
                     <i className="fa-solid fa-repeat text-[19px] w-6  text-center"></i>
-                    <p className="hover:underline">Transfer Profile </p>
+                    <p className="hover:underline">
+                      {lang[langKey].transferProfile}
+                    </p>
                   </li>
                   <li className="text-[13px] flex-center gap-[10px] ml-[10px] h-[43px]">
                     <i className="fa-solid fa-user text-[19px] w-6  text-center"></i>
-                    <p className="hover:underline">Account </p>
+                    <p className="hover:underline">{lang[langKey].account} </p>
                   </li>
                   <li className="text-[13px] flex-center gap-[10px] ml-[10px] h-[43px]">
                     <i className="fa-solid fa-circle-info text-[19px] w-6  text-center"></i>
-                    <p className="hover:underline">Help centre </p>
+                    <p className="hover:underline">
+                      {lang[langKey].helpCenter}
+                    </p>
                   </li>
                 </ul>
 
@@ -168,7 +205,7 @@ const Header = () => {
                   className="py-[10px] text-[13px] text-white text-center font-medium mt-[10px] pt-[10px] border-t border-gray-500 cursor-pointer hover:underline"
                   onClick={HandleSignOut}
                 >
-                  Sign out of Netflix
+                  {lang[langKey].signout}
                 </h1>
               </div>
             )}
