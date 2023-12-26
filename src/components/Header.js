@@ -8,7 +8,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { SUPPORTED_LANGS, USER_ICON } from "../utils/constants";
 import { removeMovies } from "../utils/movieSlice";
-import { toggleShowGpt } from "../utils/gptSlice";
+import { removeGptMovies, setShowGpt, toggleShowGpt } from "../utils/gptSlice";
 import { setLang } from "../utils/configSlice";
 import { lang } from "../utils/lang";
 
@@ -31,7 +31,6 @@ const Header = () => {
       } else {
         // If the user is signed out clear the store
         dispatch(removeUser());
-        dispatch(removeMovies());
         navigate("/");
       }
     });
@@ -43,6 +42,9 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
+        dispatch(removeGptMovies());
+        dispatch(removeMovies());
+        dispatch(setShowGpt());
       })
       .catch((error) => {
         navigate("/error");
@@ -111,20 +113,18 @@ const Header = () => {
 
       {user && (
         <div className="head-right flex-center gap-[18px]">
-         
-            <div className="lang ">
-              <select
-                className="bg-gray-800 text-white text-[14px]  w-[74px] h-[27px] rounded-md text-center cursor-pointer outline-none"
-                onChange={handleLang}
-              >
-                {SUPPORTED_LANGS.map((lang) => (
-                  <option key={lang.identifier} value={lang.identifier}>
-                    {lang.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          
+          <div className="lang ">
+            <select
+              className="bg-gray-800 text-white text-[14px]  w-[74px] h-[27px] rounded-md text-center cursor-pointer outline-none"
+              onChange={handleLang}
+            >
+              {SUPPORTED_LANGS.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <div
             className="Gpt-seatch flex-center gap-[8px] cursor-pointer"

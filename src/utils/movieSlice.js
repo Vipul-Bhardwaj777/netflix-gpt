@@ -27,6 +27,9 @@ const movieSlice = createSlice({
     },
     removeMovies: (state) => {
       state.nowPlayingMovies = null;
+      state.popularMovies = null;
+      state.topRatedMovies = null;
+      state.upcomingMovies = null;
       state.trailer = null;
     },
   },
