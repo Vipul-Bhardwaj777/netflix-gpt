@@ -69,7 +69,7 @@ const Header = () => {
   return (
     <div className="header-main h-[41px] z-40 flex  justify-between md:h-[41px] lg:h-[68px] px-[17px] md:px-[30px] lg:px-[40px] w-full absolute bg-gradient-to-b from-black  md:flex-row">
       {!user && (
-        <div className="img  pl-8 ml-[38px] mt-[25px] ">
+        <div className="img  lg:pl-8 lg:ml-[38px] mt-[25px]  ">
           <img className="h-[45px]  " src="./netflixLogo.svg" alt="logo" />
         </div>
       )}
@@ -161,7 +161,7 @@ const Header = () => {
 
             {showSignout && (
               <div
-                className="signout bg-black opacity-90 w-[390px] md:w-[218px]  absolute py-[10px] top-12 right-0 transition ease-in-out duration-[2s] flex flex-col   "
+                className="signout bg-black z-50 opacity-90 w-[390px] md:w-[218px]  absolute py-[10px] top-12 right-0 transition ease-in-out duration-[2s] flex flex-col   "
                 onMouseEnter={handleEnter}
                 onMouseLeave={handleLeave}
               >
