@@ -17,7 +17,7 @@ const VideoBg = ({ id }) => {
     <div className="main -translate-y-[90px] relative">
       {!videoLoaded && <Shimmer />}
       <iframe
-        className=" aspect-video w-full"
+        className=" md:aspect-video w-full"
         src={
           "https://www.youtube.com/embed/" +
           trailer?.key +

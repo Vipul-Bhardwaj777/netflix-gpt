@@ -67,7 +67,7 @@ const Header = () => {
   };
 
   return (
-    <div className="header-main z-40 flex-center justify-between h-[68px] w-full absolute bg-gradient-to-b from-black">
+    <div className="header-main  z-40 flex-center  justify-between md:h-[68px] h-[80px] w-full absolute bg-gradient-to-b from-black flex-col md:flex-row">
       {!user && (
         <div className="img  pl-8 ml-[38px] mt-[25px] ">
           <img className="h-[45px]  " src="./netflixLogo.svg" alt="logo" />
@@ -86,7 +86,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <ul className="head-list flex-center gap-[18px] text-white texyt-[14px] ml-[43px] font-medium ">
+          <ul className="head-list flex-center gap-[18px] text-white text-[14px] ml-[43px] font-medium invisible md:visible ">
             <li>
               <Link className="" to={"/"}>
                 {lang[langKey].tvShow}
@@ -112,7 +112,7 @@ const Header = () => {
       )}
 
       {user && (
-        <div className="head-right flex-center gap-[18px]">
+        <div className="head-right flex-center md:gap-[15px] ml-24 md:ml-0 gap-[30px]">
           <div className="lang ">
             <select
               className="bg-gray-800 text-white text-[14px]  w-[74px] h-[27px] rounded-md text-center cursor-pointer outline-none"
@@ -143,7 +143,7 @@ const Header = () => {
           <i className="fa-regular fa-bell cursor-pointer text-[20px] text-white "></i>
 
           <div
-            className="user-icon relative  h-8 w-[51px] flex-center mr-[51px]"
+            className="user-icon relative  h-8 w-[51px] flex-center md:mr-[51px] mr-0"
             onMouseEnter={handleEnter}
             onClick={() => setShowSignout(!showSignout)}
           >
@@ -161,7 +161,7 @@ const Header = () => {
 
             {showSignout && (
               <div
-                className="signout bg-black opacity-90 w-[218px]  absolute py-[10px] top-12 right-0 transition ease-in-out duration-[2s] flex flex-col   "
+                className="signout bg-black opacity-90 w-[350px] md:w-[218px]  absolute py-[10px] top-12 right-0 transition ease-in-out duration-[2s] flex flex-col   "
                 onMouseEnter={handleEnter}
                 onMouseLeave={handleLeave}
               >

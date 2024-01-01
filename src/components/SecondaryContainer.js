@@ -11,7 +11,7 @@ const SecondaryContainer = () => {
 
   return (
     <div className="secondary-main bg-black ">
-      <div className="movie-lists ml-[51px] -mt-[15rem] pb-[39px] z-50 relative">
+      <div className="movie-lists ml-[51px] md:-mt-[15rem] pb-[39px] z-50 relative">
         <MovieList
           title={lang[langKey].nowPlaying}
           movies={movies?.nowPlayingMovies}

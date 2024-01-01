@@ -69,17 +69,17 @@ const GptSearch = () => {
 
       <div className="gpt-search z-10 relative h-[60%] w-full flex-center justify-center ">
         <form
-          className=" w-[45%] flex justify-between"
+          className=" md:w-[45%] w-[65%] flex justify-between"
           onSubmit={(e) => e.preventDefault()}
         >
           <input
             ref={searchText}
             type="text"
             placeholder={lang[langKey].placeholder}
-            className="shadow-lg w-[73%] h-[45px] rounded-md p-4 text-[15px] outline-none"
+            className="shadow-lg w-[73%] md:h-[45px] h-[40px] rounded-md p-4 md:text-[13px] lg:text-[16px] text-[10px] outline-none"
           />
           <button
-            className="shadow-lg  bg-netflix-color hover:bg-red-700 h-[45px] w-[25%] text-white text-[16px] font-semibold rounded-md py-[6px] mb-4 cursor-pointer"
+            className="shadow-lg  bg-netflix-color hover:bg-red-700 md:h-[45px] h-[40px] w-[25%] text-white lg:text-[16px] text-[12px] font-semibold rounded-md py-[6px] mb-4 cursor-pointer"
             onClick={handleGptSearch}
           >
             {lang[langKey].search}

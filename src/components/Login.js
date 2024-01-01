@@ -111,7 +111,7 @@ const Login = () => {
 
       <Header />
       <form
-        className="form w-4/12 bg-black absolute mx-auto my-[92px] left-0 right-0 text-white py-[48px] px-[68px] opacity-80 rounded-lg"
+        className="form lg:w-4/12 md:w-6/12 bg-black absolute md:mx-auto my-[92px] left-0 right-0 text-white py-[48px] px-[68px] opacity-80 rounded-lg"
         onSubmit={(e) => e.preventDefault()}
       >
         <h1 className="text-[32px] font-bold mb-[28px] ">
