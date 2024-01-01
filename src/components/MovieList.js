@@ -6,8 +6,8 @@ const MovieList = ({ title, movies }) => {
 
   return (
     <div className="main ">
-      <div className="now-playing mb-[39px]">
-        <h1 className="mb-[14px] lg:text-[14.33px] md:text-[12px] xl:text-[20px] text-[12px] text-white font-semibold">
+      <div className="now-playing lg:mb-[39px] mb-[5px] md:mb-[10px]">
+        <h1 className="md:mb-[10px] mb-[5px] lg:text-[14.33px] md:text-[12px] xl:text-[20px] text-[12px] text-white font-semibold">
           {title}
         </h1>
 
